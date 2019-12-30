@@ -25,4 +25,14 @@ function js(){
         .pipe(gulp.dest('./src/js'))
 }
 
+function server(){
+    browsersync.init({
+        server: './src/'
+    })
+
+    gulp.watch(['./src/js/**/*.js', '!./src/js/**/*.min.js'], js)
+        .on('change', browsersync.reload)
+}
+
 exports.default = js
+exports.server = server

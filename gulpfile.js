@@ -21,7 +21,9 @@ function js(){
             './src/js/getRandomNumber.js',
             './src/js/app.js'
         ])
+        .pipe(sourcemaps.init())
         .pipe(concat('app.min.js'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./src/js'))
 }
 

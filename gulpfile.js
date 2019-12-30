@@ -14,4 +14,15 @@ function sass(){
         .pipe(gulp.dest('./src/css'))
 }
 
-module.exports.default = sass
+function js(){
+    return gulp.src([
+            './src/js/getStudents.js',
+            './src/js/getMedia.js',
+            './src/js/getRandomNumber.js',
+            './src/js/app.js'
+        ])
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest('./src/js'))
+}
+
+exports.default = js

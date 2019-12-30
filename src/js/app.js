@@ -24,13 +24,6 @@
         document.querySelector('#content-students').innerHTML = str
     }
 
-    function getMedia(){
-        let notas = Array.from(arguments)
-        let media = (notas.reduce( (current, sum) => {
-            return current + sum
-        }) / notas.length)         
-        return media.toFixed(2)
-    }
 
     const createDomIntoList = (luckyStudents) =>{
         const str = luckyStudents.map( s => {            
@@ -84,27 +77,7 @@
     const showsTheWinner = (luckyStudent) => {
         document.querySelector(`#student-${luckyStudent.i}`).style.backgroundColor = 'green'
     }
-
-    const getRandonNumber = (min, max) => {
-        let r = Math.random() * (max - min + 1) + min;
-        return parseInt(r)
-    }
-     
-    const getStudents = async () => {
-        const url_json = 'https://serfrontend.com/fakeapi/alunos.json'
-        const response = await fetch(url_json)
-        let data = await response.json()
-
-        data.map( (s) => {            
-            s.media = parseFloat(getMedia(...s.notas) )
-        })        
-        
-        if (response.status !== 200) {
-            throw Error(data.detail);
-        }
-        return data
-        
-    } 
+    
     getStudents()
         .then(students => init(students))
         .catch(err => console.error(err))
